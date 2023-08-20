@@ -344,6 +344,10 @@ QVariant formatNumericData(QVariant value) {
     }else {
         return value;
     }
+    QString check(anValue.toLongLong());
+    if (value != check) {
+        return value;
+    }
     return QString("%L1").arg(anValue.toLongLong());
 }
 
