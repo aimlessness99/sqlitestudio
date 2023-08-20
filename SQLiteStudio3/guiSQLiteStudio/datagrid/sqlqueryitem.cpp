@@ -336,6 +336,9 @@ QVariant formatNumericData(const QVariant &value) {
         return QString("%L1").arg(anValue.toLongLong());
     }else if (isString(value)) {
         QString v = value.toString();
+        if (v.size() > 64) {
+            return value;
+        }
         anValue = value.value<long long>();
         if (v == anValue.toString()) {
              return QString("%L1").arg(anValue.toLongLong());
