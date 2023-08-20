@@ -333,25 +333,19 @@ QVariant formatNumericData(const QVariant &value) {
     QVariant anValue;
     if (isInteger(value)) {
         anValue = value;
+        return QString("%L1").arg(anValue.toLongLong());
     }else if (isString(value)) {
-        if (value.canConvert<long long>()) {
-            anValue = value.value<long long>();
-            if (value == QVariant(anValue.toLongLong())) {
-                goto end;
-            }
-        } 
-        if (value.canConvert<double>()) {
-            anValue = value.value<double>();
-            if (value == QVariant(anValue.toDouble())) {
-                goto end;
-            }
+        QString v = value.toString();
+        anValue = value.value<long long>();
+        if (v == ananValue.toString()) {
+             return QString("%L1").arg(anValue.toLongLong());
         }
-        return value;
-    }else {
-        return value;
+        anValue = value.value<double>();
+        if (v == ananValue.toString()) {
+             return QString("%L1").arg(anValue.toDouble());
+        }
     }
-end:
-    return QString("%L1").arg(anValue.toLongLong());
+    return value;
 }
 
 QVariant SqlQueryItem::data(int role) const
