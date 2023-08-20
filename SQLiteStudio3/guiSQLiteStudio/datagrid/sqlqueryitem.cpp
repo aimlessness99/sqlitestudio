@@ -311,6 +311,42 @@ void SqlQueryItem::setData(const QVariant &value, int role)
     QStandardItem::setData(value, role);
 }
 
+static bool isInteger(const QVariant &variant)
+{
+    switch (variant.userType())
+    {
+        case QMetaType::Int:
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
+        case QMetaType::ULongLong:
+            return true;
+    }
+    return false;
+}
+
+static bool isString(const QVariant &variant)
+{
+    return variant.userType() == QMetaType::QString;
+}
+
+QVariant formatNumericData(QVariant value) {
+    QVariant anValue;
+    if (isInteger(value)) {
+        anValue = value;
+    }else if (isString(value)) {
+        if (value.canConvert(long long)) {
+            anValue = value.value<long long>();
+        } else if (value.canConvert(double)) {
+            anValue = value.value<double>();
+        } else {
+            return value;
+        }
+    }else {
+        return value;
+    }
+    return QString("%L1").arg(anValue);
+}
+
 QVariant SqlQueryItem::data(int role) const
 {
     switch (role)
@@ -331,7 +367,7 @@ QVariant SqlQueryItem::data(int role) const
             if (value.isNull())
                 return "NULL";
 
-            return value;
+            return formatNumericData(value);
         }
         case Qt::ForegroundRole:
         {
