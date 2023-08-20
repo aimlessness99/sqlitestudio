@@ -329,7 +329,7 @@ static bool isString(const QVariant &variant)
     return variant.userType() == QMetaType::QString;
 }
 
-QVariant formatNumericData(QVariant value) {
+QVariant formatNumericData(const QVariant &value) {
     QVariant anValue;
     if (isInteger(value)) {
         anValue = value;
