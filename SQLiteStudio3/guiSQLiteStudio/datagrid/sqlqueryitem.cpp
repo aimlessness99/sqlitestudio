@@ -337,11 +337,11 @@ QVariant formatNumericData(const QVariant &value) {
     }else if (isString(value)) {
         QString v = value.toString();
         anValue = value.value<long long>();
-        if (v == ananValue.toString()) {
+        if (v == anValue.toString()) {
              return QString("%L1").arg(anValue.toLongLong());
         }
         anValue = value.value<double>();
-        if (v == ananValue.toString()) {
+        if (v == anValue.toString()) {
              return QString("%L1").arg(anValue.toDouble());
         }
     }
