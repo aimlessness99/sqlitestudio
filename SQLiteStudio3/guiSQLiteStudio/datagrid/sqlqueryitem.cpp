@@ -319,6 +319,19 @@ static bool isInteger(const QVariant &variant)
         case QMetaType::UInt:
         case QMetaType::LongLong:
         case QMetaType::ULongLong:
+        case QMetaType::Short:
+        case QMetaType::UShort:
+            return true;
+    }
+    return false;
+}
+
+static bool isFloat(const QVariant &variant)
+{
+    switch (variant.userType())
+    {
+        case QMetaType::Float:
+        case QMetaType::Double:
             return true;
     }
     return false;
@@ -332,9 +345,10 @@ static bool isString(const QVariant &variant)
 QVariant formatNumericData(const QVariant &value) {
     QVariant anValue;
     if (isInteger(value)) {
-        anValue = value;
-        return QString("%L1").arg(anValue.toLongLong());
-    }else if (isString(value)) {
+        return QString("%L1").arg(value.toLongLong());
+    } else if (isFloat(value)) {
+        return QString("%L1").arg(value.toDouble());
+    } else if (isString(value)) {
         QString v = value.toString();
         if (v.size() > 64) {
             return value;
