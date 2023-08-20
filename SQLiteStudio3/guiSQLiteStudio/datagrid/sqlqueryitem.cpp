@@ -336,18 +336,21 @@ QVariant formatNumericData(const QVariant &value) {
     }else if (isString(value)) {
         if (value.canConvert<long long>()) {
             anValue = value.value<long long>();
-        } else if (value.canConvert<double>()) {
+            if (value == QVariant(anValue.toLongLong())) {
+                goto end;
+            }
+        } 
+        if (value.canConvert<double>()) {
             anValue = value.value<double>();
-        } else {
-            return value;
+            if (value == QVariant(anValue.toDouble())) {
+                goto end;
+            }
         }
+        return value;
     }else {
         return value;
     }
-    QString check(anValue.toLongLong());
-    if (value != check) {
-        return value;
-    }
+end:
     return QString("%L1").arg(anValue.toLongLong());
 }
 
