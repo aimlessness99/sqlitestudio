@@ -334,9 +334,9 @@ QVariant formatNumericData(QVariant value) {
     if (isInteger(value)) {
         anValue = value;
     }else if (isString(value)) {
-        if (value.canConvert(long long)) {
+        if (value.canConvert<long long>()) {
             anValue = value.value<long long>();
-        } else if (value.canConvert(double)) {
+        } else if (value.canConvert<double>()) {
             anValue = value.value<double>();
         } else {
             return value;
@@ -344,7 +344,7 @@ QVariant formatNumericData(QVariant value) {
     }else {
         return value;
     }
-    return QString("%L1").arg(anValue);
+    return QString("%L1").arg(anValue.toLongLong());
 }
 
 QVariant SqlQueryItem::data(int role) const
