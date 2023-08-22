@@ -18,8 +18,6 @@ on:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
             type: boolean
-    schedule:
-        - cron: '0 3 * * 1' # run at 3 AM UTC every Monday
     repository_dispatch:
         types: [mac_release]
 
