@@ -8,8 +8,6 @@ name: Update messages
 on:
     workflow_dispatch:
         inputs:
-    schedule:
-        - cron: '30 5 * * *' # run at 5:30 AM UTC every day
 
 jobs:
     build:
