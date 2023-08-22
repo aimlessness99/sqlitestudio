@@ -12,18 +12,6 @@ env:
 
 name: Windows 64-bit release build
 
-on:
-    workflow_dispatch:
-        inputs:
-          use_ccache:
-            description: 'Use ccache (for workflow debugging only!)'
-            required: false
-            type: boolean
-    schedule:
-        - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
-    repository_dispatch:
-        types: [win64_release]
-
 jobs:
     build:
         runs-on: windows-2019
