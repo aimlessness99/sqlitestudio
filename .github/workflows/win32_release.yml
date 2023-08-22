@@ -11,18 +11,6 @@ env:
 
 name: Windows 32-bit release build
 
-on:
-    workflow_dispatch:
-        inputs:
-          use_ccache:
-            description: 'Use ccache (for workflow debugging only!)'
-            required: false
-            type: boolean
-    schedule:
-        - cron: '30 2 * * 1' # run at 2 AM UTC every Monday
-    repository_dispatch:
-        types: [win32_release]
-
 jobs:
     build:
         runs-on: windows-2019
