@@ -12,8 +12,6 @@ on:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
             type: boolean
-    schedule:
-        - cron: '30 1 * * 1' # run at 1:30 AM UTC every Monday
     repository_dispatch:
         types: [lin_release]
 
