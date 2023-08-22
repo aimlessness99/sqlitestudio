@@ -12,8 +12,6 @@ on:
             description: 'Use ccache'
             required: false
             type: boolean
-    schedule:
-        - cron: '0 3 * * 0'  # run at 3 AM UTC every Sunday
     repository_dispatch:
         types: [mac_universal_deps]
 
